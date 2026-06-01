@@ -1,0 +1,3 @@
+- name: iam from role demo 
+  ansible.builtin.debug:
+   msg: " iam demo roles"
