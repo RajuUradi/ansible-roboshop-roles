@@ -20,3 +20,5 @@
      name: mongod
      state: started
      enabled: yes     
+
+     # telnet mongodb-dev.learnawsdevops.online 27017
