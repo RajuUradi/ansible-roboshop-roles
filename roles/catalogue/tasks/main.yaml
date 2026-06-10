@@ -4,14 +4,25 @@
     tasks_from: nodejs_setup
 
 - name: app setup
+  tags: 
+  - deployment
   ansible.builtin.import_role:
    name: common
    tasks_from: app_setup
 
 - name: systemd setup
+  tags: 
+  - deployment
   ansible.builtin.import_role:
    name: common
    tasks_from: systemd_setup
+
+- name: daemon reload 
+  tags: 
+  - deployment
+  ansible.builtin.import_role:
+   name: common
+   tasks_from: daemon_reload
 
 
 - name: copy mongo repo

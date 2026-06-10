@@ -1,0 +1,29 @@
+
+- name: app setup
+  ansible.builtin.import_role:
+   tasks_from: app_setup
+
+- name: java & mysql-client setup
+  ansible.builtin.import_role:
+   tasks_from: java_setup
+
+- name: systemd setup
+  ansible.builtin.import_role:
+   tasks_from: systemd_setup
+
+- name: daemon reload
+  ansible.builtin.import_role:
+   tasks_from: daemon_reload
+
+- name: load schema from mysql database
+  ansible.builtin.shell: mysql -h {{MYSQL_HOST}} -uroot -pRoboShop@1 < {{item}}
+  loop:
+   - /app/db/schema.sql
+   - /app/db/app-user.sql 
+   - /app/db/master-data.sql
+
+- name: start and enable shipping    
+  ansible.builtin.service:
+   name: shipping
+   state: restarted
+   enabled: yes  

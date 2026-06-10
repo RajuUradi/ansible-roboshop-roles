@@ -1,0 +1,15 @@
+- name: app setup
+  ansible.builtin.import_role:
+   tasks_from: app_setup
+
+- name: nodejs setup
+  ansible.builtin.import_role:
+   tasks_from: nodejs_setup
+
+- name: systemd_setup
+  ansible.builtin.import_role:
+   task_from: systemd_setup
+
+- name: daemon reload
+  ansible.builtin.import_role:
+   tasks_from: daemon_reload
